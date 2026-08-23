@@ -1,14 +1,25 @@
 import ProfileHeader from "@/components/ProfileHeader";
-import LinkCard from "@/components/LinkCard";
+import LinkList from "@/components/LinkList";
 
 const links = [
-  { label: "🐙 GitHub", href: "https://github.com/", color: "#181717" },
   {
+    id: "github",
+    label: "🐙 GitHub",
+    href: "https://github.com/",
+    color: "#181717",
+  },
+  {
+    id: "blog",
     label: "📝 Blog",
     href: "https://blog.naver.com/sozx2002",
     color: "#03C75A",
   },
-  { label: "📧 Email", href: "mailto:sozx2002@gmail.com", color: "#EA4335" },
+  {
+    id: "email",
+    label: "📧 Email",
+    href: "mailto:sozx2002@gmail.com",
+    color: "#EA4335",
+  },
 ];
 
 export default function Home() {
@@ -20,16 +31,7 @@ export default function Home() {
           bio="자동 제어 개발자 | 요즘은 바이브 코더"
           avatarSrc="/Pikka2.png"
         />
-        <div className="flex w-full flex-col gap-4">
-          {links.map((link) => (
-            <LinkCard
-              key={link.label}
-              label={link.label}
-              href={link.href}
-              color={link.color}
-            />
-          ))}
-        </div>
+        <LinkList links={links} />
       </main>
     </div>
   );
