@@ -1,15 +1,27 @@
 type LinkCardProps = {
   label: string;
   href: string;
+  color?: string;
 };
 
-export default function LinkCard({ label, href }: LinkCardProps) {
+export default function LinkCard({ label, href, color }: LinkCardProps) {
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex h-14 w-full items-center justify-center rounded-xl border border-zinc-300 bg-white text-base font-medium text-zinc-900 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800"
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      style={
+        color
+          ? {
+              backgroundColor: `${color}17`,
+              borderColor: `${color}33`,
+              color,
+            }
+          : undefined
+      }
+      className="flex h-14 w-full items-center justify-center rounded-2xl border border-white/50 bg-white/40 text-base font-medium text-stone-800 shadow-[0_4px_20px_-8px_rgba(60,40,20,0.25)] backdrop-blur-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgba(60,40,20,0.3)] dark:border-white/10 dark:bg-white/5 dark:text-stone-100"
     >
       {label}
     </a>
